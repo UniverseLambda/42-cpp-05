@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# VSCode de tes morts
+.vscode/
+
+# SUPPRESS THE TERRORISTS
+ex0*/**
+!ex0*/*.cpp
+!ex0*/*.hpp
+!ex0*/Makefile
