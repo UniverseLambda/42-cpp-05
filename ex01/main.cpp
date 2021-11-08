@@ -5,32 +5,6 @@
 #include <iostream>
 #include <iomanip>
 
-/**
- * Helper class for stdout separator for exercise tests
- */
-struct Ex {
-	Ex(int exNum) {
-		std::cout << "//////////////////////// EX 0" << exNum << " \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\" << std::endl << std::endl;
-	}
-
-	~Ex() {
-		std::cout << "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|///////////////////////////" << std::endl << std::endl;
-	}
-};
-
-
-/**
- * Helper class for stdout separator for tests of the same exercise
- */
-struct Test {
-	Test() {
-		std::cout << "=======================================================" << std::endl;
-	}
-
-	~Test() {
-		std::cout << "*******************************************************" << std::endl << std::endl;
-	}
-};
 
 void displayInformation(std::string varName, Bureaucrat &b) {
 	std::cout << varName << "                          " << b << std::endl;
@@ -46,81 +20,9 @@ void displayInformation(std::string varName, Form &f) {
 	std::cout << varName << " minimum execution grade: " << f.getExecutionGrade() << std::endl;
 }
 
-// Just to demonstrate it's still working
-void ex00() {
-	Ex e(0);
-
+void test() {
+	std::cout << "=======================================================" << std::endl;
 	{
-		Test t;
-
-		Bureaucrat theRealBureaucrat("I'm a real Bureaucrat", 1);
-		displayInformation("theRealBureaucrat", theRealBureaucrat);
-
-		try {
-			theRealBureaucrat.incrementGrade();
-		} catch (std::exception &e) {
-			std::cout << "Can't be better than perfection, sorry pal" << std::endl;
-			std::cout << "(Caught an exception: " << e.what() << ")" << std::endl;
-		}
-
-		std::cout << theRealBureaucrat << std::endl;
-		theRealBureaucrat.decrementGrade();
-		std::cout << theRealBureaucrat << std::endl;
-	}
-
-	{
-		Test t;
-
-		Bureaucrat zeRilBureaucrate("Aïm eu ril Bureaucrate", 150);
-		displayInformation("zeRilBureaucrate", zeRilBureaucrate);
-
-		try {
-			zeRilBureaucrate.decrementGrade();
-		} catch (std::exception &e) {
-			std::cout << "Can't be worse than Karen, sorry pal" << std::endl;
-			std::cout << "(Caught an exception: " << e.what() << ")" << std::endl;
-		}
-
-		std::cout << zeRilBureaucrate << std::endl;
-		zeRilBureaucrate.incrementGrade();
-		std::cout << zeRilBureaucrate << std::endl;
-	}
-
-	{
-		Test t;
-		try {
-
-			Bureaucrat zeBestBureaucrate("Tqt frere je suis le best", 0);
-			displayInformation("zeBestBureaucrate", zeBestBureaucrate);
-
-			std::cerr << "Wait... What?" << std::endl;
-		} catch (std::exception &e) {
-			std::cout << "Your grade is sus" << std::endl;
-			std::cout << "(Caught an exception: " << e.what() << ")" << std::endl;
-		}
-	}
-
-	{
-		Test t;
-
-		try {
-
-			Bureaucrat zeWorstBureaucrate("Tqt frere je suis le best", 151);
-			displayInformation("zeWorstBureaucrate", zeWorstBureaucrate);
-
-			std::cerr << "Wait... What?" << std::endl;
-		} catch (std::exception &e) {
-			std::cout << "Your grade is sus" << std::endl;
-			std::cout << "(Caught an exception: " << e.what() << ")" << std::endl;
-		}
-	}
-}
-
-void ex01() {
-	Ex e(1);
-
-	{
-		Test t;
 
 		Form ezForm("The good ol' form", 100, 140);
 		Bureaucrat bossman("BG of all BG", 20);
@@ -134,10 +36,13 @@ void ex01() {
 
 		displayInformation("ezForm", ezForm);
 		displayInformation("bossman", bossman);
-	}
 
+	}
+	std::cout << "*******************************************************" << std::endl << std::endl;
+
+
+	std::cout << "=======================================================" << std::endl;
 	{
-		Test t;
 
 		Form ezForm("The good ol' form", 100, 140);
 		Bureaucrat noobie("LoL player", 140);
@@ -151,12 +56,45 @@ void ex01() {
 
 		displayInformation("ezForm", ezForm);
 		displayInformation("noobie", noobie);
+
 	}
+	std::cout << "*******************************************************" << std::endl << std::endl;
+
+
+	std::cout << "=======================================================" << std::endl;
+	{
+
+		try {
+			Form impossible("Impossible form", 0, 140);
+
+			displayInformation("impossible", impossible);
+		} catch (std::exception &e) {
+			std::cout << "Nobody can be that perfect. Sorry." << std::endl;
+			std::cout << "(Caught an exception: " << e.what() << ")" << std::endl;
+		}
+
+	}
+	std::cout << "*******************************************************" << std::endl << std::endl;
+
+
+	std::cout << "=======================================================" << std::endl;
+	{
+
+		try {
+			Form impossible("Impossible form", 1, 160);
+
+			displayInformation("impossible", impossible);
+		} catch (std::exception &e) {
+			std::cout << "Nobody can be that bad. Sorry." << std::endl;
+			std::cout << "(Caught an exception: " << e.what() << ")" << std::endl;
+		}
+
+	}
+	std::cout << "*******************************************************" << std::endl << std::endl;
 }
 
 int main(void) {
-	ex00();
-	ex01();
+	test();
 
 	return 0;
 }

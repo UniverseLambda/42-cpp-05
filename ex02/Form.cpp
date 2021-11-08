@@ -3,15 +3,6 @@
 #include "Bureaucrat.hpp"
 #include "Utils.hpp"
 
-// Form::Form(std::string name, int signingGrade, int executionGrade):
-// 	mName(name),
-// 	mSigningGrade(signingGrade),
-// 	mExecutionGrade(executionGrade),
-// 	mSigned(false) {
-// 	checkGrade<GradeTooLowException, GradeTooHighException>(mSigningGrade);
-// 	checkGrade<GradeTooLowException, GradeTooHighException>(mExecutionGrade);
-// }
-
 Form::Form(const std::string &name, int signingGrade, int executionGrade):
 	mName(name),
 	mSigningGrade(signingGrade),
@@ -31,13 +22,6 @@ Form::Form(const Form &cpy):
 Form::~Form() {
 }
 
-void Form::beSigned(const Bureaucrat &signer) {
-	if (signer.getGrade() > mSigningGrade) {
-		throw GradeTooLowException();
-	}
-	mSigned = true;
-}
-
 Form &Form::operator=(const Form &rhs) {
 	mName = rhs.mName;
 	mSigningGrade = rhs.mSigningGrade;
@@ -45,6 +29,20 @@ Form &Form::operator=(const Form &rhs) {
 	mSigned = rhs.mSigned;
 
 	return *this;
+}
+
+void Form::beSigned(const Bureaucrat &signer) {
+	if (signer.getGrade() > mSigningGrade) {
+		throw GradeTooLowException();
+	}
+	mSigned = true;
+}
+
+void Form::execute(const Bureaucrat &executor) const {
+	if (executor.getGrade() > mExecutionGrade) {
+		throw GradeTooLowException();
+	}
+	executeImpl();
 }
 
 const std::string &Form::getName() const {
