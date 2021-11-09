@@ -44,6 +44,17 @@ public:
 	struct GradeTooLowException: public GradeTooLowExceptionBase {
 		virtual ~GradeTooLowException() throw();
 	};
+
+	struct FormNotSignedException: public std::exception {
+		virtual ~FormNotSignedException() throw();
+
+		virtual const char* what() const throw();
+	};
 };
 
 std::ostream &operator<<(std::ostream &lhs, const Form &rhs);
+
+template<typename _FormType>
+Form *makeForm(std::string target) {
+	return new _FormType(target);
+}

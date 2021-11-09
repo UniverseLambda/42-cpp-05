@@ -43,25 +43,6 @@ public:
 	}
 };
 
-/**
- * Helper class for stdout separator for tests of the same exercise
- */
-struct Test {
-	Test() {
-		std::cout << "=======================================================" << std::endl;
-	}
-
-	Test(const Test &) {}
-
-	~Test() {
-		std::cout << "*******************************************************" << std::endl << std::endl;
-	}
-
-	Test &operator=(const Test &) {
-		return (*this);
-	}
-};
-
 void displayInformation(std::string varName, Bureaucrat &b) {
 	std::cout << varName << "                          " << b << std::endl;
 	std::cout << varName << " name:                    " << b.getName() << std::endl;
@@ -90,12 +71,23 @@ void test() {
 		anybody.executeForm(*form1);
 		beholdTheKaren.executeForm(*form0);
 		beholdTheKaren.executeForm(*form1);
+
+		theGreatShrek.signForm(*form0);
+		anybody.signForm(*form1);
+
+		theGreatShrek.executeForm(*form0);
+		anybody.executeForm(*form1);
+		beholdTheKaren.executeForm(*form0);
+		beholdTheKaren.executeForm(*form1);
 	}
 
 	std::cout << "=======================================================" << std::endl;
 	{
 		AutoPtr<Form> form0(new RobotomyRequestForm("FirePape")); // Rip mdr
 		AutoPtr<Form> form1(new RobotomyRequestForm("DJ Saaskel"));
+
+		theGreatShrek.signForm(*form0);
+		anybody.signForm(*form1);
 
 		theGreatShrek.executeForm(*form0);
 		anybody.executeForm(*form1);
@@ -108,6 +100,10 @@ void test() {
 	{
 		AutoPtr<Form> form0(new PresidentialPardonForm("DJ Saaskel"));
 		AutoPtr<Form> form1(new PresidentialPardonForm("FirePape"));
+
+
+		theGreatShrek.signForm(*form0);
+		anybody.signForm(*form1);
 
 		theGreatShrek.executeForm(*form0);
 		anybody.executeForm(*form1);

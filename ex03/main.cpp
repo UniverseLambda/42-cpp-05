@@ -2,12 +2,10 @@
 
 #include "Form.hpp"
 
+#include "Intern.hpp"
+
 #include <iostream>
 #include <iomanip>
-
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
 
 /**
  * Helper class that acts as a pointer but auto-free it when out-of-scope
@@ -43,25 +41,6 @@ public:
 	}
 };
 
-/**
- * Helper class for stdout separator for tests of the same exercise
- */
-struct Test {
-	Test() {
-		std::cout << "=======================================================" << std::endl;
-	}
-
-	Test(const Test &) {}
-
-	~Test() {
-		std::cout << "*******************************************************" << std::endl << std::endl;
-	}
-
-	Test &operator=(const Test &) {
-		return (*this);
-	}
-};
-
 void displayInformation(std::string varName, Bureaucrat &b) {
 	std::cout << varName << "                          " << b << std::endl;
 	std::cout << varName << " name:                    " << b.getName() << std::endl;
@@ -83,36 +62,78 @@ void test() {
 
 	std::cout << "=======================================================" << std::endl;
 	{
-		AutoPtr<Form> form0(new ShrubberyCreationForm("Dr House"));
-		AutoPtr<Form> form1(new ShrubberyCreationForm("I LIKE ARBRE"));
+		Intern someRandomIntern;
 
-		theGreatShrek.executeForm(*form0);
-		anybody.executeForm(*form1);
-		beholdTheKaren.executeForm(*form0);
-		beholdTheKaren.executeForm(*form1);
-	}
+		Form* rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 
-	std::cout << "=======================================================" << std::endl;
-	{
-		AutoPtr<Form> form0(new RobotomyRequestForm("FirePape")); // Rip mdr
-		AutoPtr<Form> form1(new RobotomyRequestForm("DJ Saaskel"));
 
-		theGreatShrek.executeForm(*form0);
-		anybody.executeForm(*form1);
-		beholdTheKaren.executeForm(*form0);
-		beholdTheKaren.executeForm(*form1);
+		theGreatShrek.executeForm(*rrf);
+		anybody.executeForm(*rrf);
+		beholdTheKaren.executeForm(*rrf);
+
+		theGreatShrek.signForm(*rrf);
+		anybody.signForm(*rrf);
+		beholdTheKaren.signForm(*rrf);
+
+		theGreatShrek.executeForm(*rrf);
+		anybody.executeForm(*rrf);
+		beholdTheKaren.executeForm(*rrf);
+
+		delete rrf;
 	}
 	std::cout << "*******************************************************" << std::endl << std::endl;
 
 	std::cout << "=======================================================" << std::endl;
 	{
-		AutoPtr<Form> form0(new PresidentialPardonForm("DJ Saaskel"));
-		AutoPtr<Form> form1(new PresidentialPardonForm("FirePape"));
+		Intern slave;
 
-		theGreatShrek.executeForm(*form0);
-		anybody.executeForm(*form1);
-		beholdTheKaren.executeForm(*form0);
-		beholdTheKaren.executeForm(*form1);
+		Form* rrf;
+		rrf = slave.makeForm("shrubbery creation", "Dr House");
+
+		theGreatShrek.signForm(*rrf);
+		anybody.signForm(*rrf);
+		beholdTheKaren.signForm(*rrf);
+
+		theGreatShrek.executeForm(*rrf);
+		anybody.executeForm(*rrf);
+		beholdTheKaren.executeForm(*rrf);
+
+		delete rrf;
+	}
+	std::cout << "*******************************************************" << std::endl << std::endl;
+
+	std::cout << "=======================================================" << std::endl;
+	{
+		Intern slave;
+
+		Form* rrf;
+		rrf = slave.makeForm("presidential pardon", "DJ Saaskel");
+
+		theGreatShrek.signForm(*rrf);
+		anybody.signForm(*rrf);
+		beholdTheKaren.signForm(*rrf);
+
+		theGreatShrek.executeForm(*rrf);
+		anybody.executeForm(*rrf);
+		beholdTheKaren.executeForm(*rrf);
+
+		delete rrf;
+	}
+	std::cout << "*******************************************************" << std::endl << std::endl;
+
+	std::cout << "=======================================================" << std::endl;
+	{
+		Intern slave;
+
+		Form* rrf;
+		rrf = slave.makeForm("get better", "DJ Saaskel");
+
+		if (rrf == NULL) {
+			std::cout << "makeForm returned NULL" << std::endl;
+		} else {
+			std::cout << "Wait... What?" << std::endl;
+		}
 	}
 	std::cout << "*******************************************************" << std::endl << std::endl;
 }

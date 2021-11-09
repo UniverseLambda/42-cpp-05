@@ -86,7 +86,11 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 void ShrubberyCreationForm::executeImpl() const {
-	std::fstream out("./" + mTarget + "_shrubbery", std::ios_base::out);
+	#ifdef __linux__
+		std::fstream out(("./" + mTarget + "_shrubbery").data(), std::ios_base::out);
+	#else
+		std::fstream out("./" + mTarget + "_shrubbery", std::ios_base::out);
+	#endif
 
 	if (!out.is_open()) {
 		std::cerr << "ShrubberyCreationForm::executeImpl: IO Error" << std::endl;
