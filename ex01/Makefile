@@ -11,9 +11,10 @@ SRCS :=	main.cpp \
 
 INCS := Bureaucrat.hpp \
 		Form.hpp \
-		Utils.hpp \
+		Forward.hpp \
 		GradeTooHighExceptionBase.hpp \
 		GradeTooLowExceptionBase.hpp \
+		Utils.hpp \
 
 ifeq ($(shell uname), Linux)
 CXX :=	g++

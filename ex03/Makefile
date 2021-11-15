@@ -15,13 +15,14 @@ SRCS :=	main.cpp \
 
 INCS := Bureaucrat.hpp \
 		Form.hpp \
-		Utils.hpp \
+		Forward.hpp \
 		GradeTooHighExceptionBase.hpp \
 		GradeTooLowExceptionBase.hpp \
-		ShrubberyCreationForm.hpp \
-		RobotomyRequestForm.hpp \
-		PresidentialPardonForm.hpp \
 		Intern.hpp \
+		PresidentialPardonForm.hpp \
+		RobotomyRequestForm.hpp \
+		ShrubberyCreationForm.hpp \
+		Utils.hpp \
 
 ifeq ($(shell uname), Linux)
 CXX :=	g++
