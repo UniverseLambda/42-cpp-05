@@ -6,11 +6,18 @@
 typedef Form *(*formMaker)(std::string target);
 
 /**
- * Aggregate struct containing basic data to create forms from name
+ * Should have been an aggregate class. Buuuuut... "If any non-interface class is not in orthodox canonical form, do not grade this exercise."
+ * So f off.
  */
 struct FormCreationData {
 	std::string formName;
 	formMaker maker;
+
+	FormCreationData();
+	FormCreationData(const FormCreationData &cpy);
+	~FormCreationData();
+
+	FormCreationData &operator=(const FormCreationData &rhs);
 };
 
 class Intern {

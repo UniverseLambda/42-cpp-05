@@ -40,3 +40,15 @@ Form *Intern::makeForm(const std::string &formName, const std::string &target) c
 	std::cerr << "(Understandably angry intern) I'm not paid enough for this \"" << formName << "\" shit." << std::endl;
 	return NULL;
 }
+
+FormCreationData::FormCreationData() {}
+
+FormCreationData::FormCreationData(const FormCreationData &) {}
+
+FormCreationData::~FormCreationData() {}
+
+
+FormCreationData &FormCreationData::operator=(const FormCreationData &) {
+	return (*this);
+}
+

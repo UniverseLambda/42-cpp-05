@@ -14,7 +14,8 @@ Bureaucrat::~Bureaucrat() {
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
-	mName = rhs.mName;
+	// Nope. It's const. Can't modify one
+	// mName = rhs.mName;
 	mGrade = rhs.mGrade;
 	return *this;
 }

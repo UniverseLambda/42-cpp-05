@@ -16,7 +16,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
-	mName = rhs.mName;
+	// mName = rhs.mName;
 	mGrade = rhs.mGrade;
 	return *this;
 }
